@@ -14,7 +14,7 @@ for i in $(cat /opt/mavis/config/.env |grep "MASTER_KEYS\|SECRET_KEY\|GATEWAY_CL
 /usr/bin/docker cp mavis-postgres:/tmp/postgresql.dump /tmp/
 
     #檢查是否有備份
-   if [ -f "/etc/systemd/system/mavis.service.bk" ] &&  [ -d "/opt/mavis.bk" ] &&  [ -f "/tmp/postgresql.dump" ]; then#
+   if [ -f "/etc/systemd/system/mavis.service.bk" ] &&  [ -d "/opt/mavis.bk" ] &&  [ -f "/tmp/postgresql.dump" ]; then
 
 #2.2關閉 Mavis
 systemctl stop mavis
