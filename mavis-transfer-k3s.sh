@@ -16,9 +16,9 @@ for i in $(cat /opt/mavis/config/.env |grep "MASTER_KEYS\|SECRET_KEY\|GATEWAY_CL
     #檢查是否有備份
    if [ -f "/etc/systemd/system/mavis.service.bk" ] &&  [ -d "/opt/mavis.bk" ] &&  [ -f "/tmp/postgresql.dump" ]; then
 
-#2.2關閉 Mavis
+#22關閉 Mavis
 systemctl stop mavis
-
+sleep 10
 #3.安裝新版本 Mavis
 curl -sSL https://pentium-repo.s3.ap-northeast-1.amazonaws.com/release.mavis/version/1.2.0/install.sh | CHECK_ENV=False MASTER_KEYS=${MASTER_KEYS} SECRET_KEY=${SECRET_KEY} GATEWAY_CLIENT_ID=${GATEWAY_CLIENT_ID} GATEWAY_CLIENT_SECRET=${GATEWAY_CLIENT_SECRET} POSTGRES_PWD=${POSTGRES_PASSWORD} MAVIS_URL=${DOMAIN} bash
 
@@ -47,7 +47,7 @@ echo   "deployment complete"
 
 #check mavis service pod
 sleep 10
-kubectl get pod -A
+/usr/local/bin/kubectl get pod -A
 
 
 
