@@ -10,7 +10,7 @@ for i in $(cat /opt/mavis/config/.env |grep "MASTER_KEYS\|SECRET_KEY\|GATEWAY_CL
 
 /bin/cp -r  /etc/systemd/system/mavis.service /etc/systemd/system/mavis.service.bk
 /bin/cp -r  /opt/mavis /opt/mavis.bk 
-/usr/bin/docker exec -ti mavis-postgres bash -c "pg_dump -U psql mavis > /tmp/postgresql.dump"
+/usr/bin/docker exec mavis-postgres bash -c "pg_dump -U psql mavis > /tmp/postgresql.dump"
 /usr/bin/docker cp mavis-postgres:/tmp/postgresql.dump /tmp/
 
     #檢查是否有備份
