@@ -42,7 +42,15 @@ sleep 15
 /usr/local/bin/mavis-tool.sh upgrade-enviroment
 
 #7 安裝完成
-echo "deployment complete"
+echo ###################################
+echo   "deployment complete"
+
+#check mavis service pod
+sleep 10
+kubectl get pod -A
+
+
+
 
 # 第二步驟備份失敗  
        else 
