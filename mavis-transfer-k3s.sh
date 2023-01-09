@@ -12,10 +12,12 @@ for i in $(cat /opt/mavis/config/.env |grep "MASTER_KEYS\|SECRET_KEY\|GATEWAY_CL
 /bin/cp -r  /opt/mavis /opt/mavis.bk 
 /usr/bin/docker exec -ti mavis-postgres bash -c "pg_dump -U psql mavis > /tmp/postgresql.dump"
 /usr/bin/docker cp mavis-postgres:/tmp/postgresql.dump /tmp/
-systemctl stop mavis
-    #檢查是否有備份
-   if [ -f "/etc/systemd/system/mavis.service.bk" ] &&  [ -d "/opt/mavis.bk" ] &&  [ -f "/tmp/postgresql.dump" ]; then
 
+    #檢查是否有備份
+   if [ -f "/etc/systemd/system/mavis.service.bk" ] &&  [ -d "/opt/mavis.bk" ] &&  [ -f "/tmp/postgresql.dump" ]; then#
+
+#2.2關閉 Mavis
+systemctl stop mavis
 
 #3.安裝新版本 Mavis
 curl -sSL https://pentium-repo.s3.ap-northeast-1.amazonaws.com/release.mavis/version/1.2.0/install.sh | CHECK_ENV=False MASTER_KEYS=${MASTER_KEYS} SECRET_KEY=${SECRET_KEY} GATEWAY_CLIENT_ID=${GATEWAY_CLIENT_ID} GATEWAY_CLIENT_SECRET=${GATEWAY_CLIENT_SECRET} POSTGRES_PWD=${POSTGRES_PASSWORD} MAVIS_URL=${DOMAIN} bash
