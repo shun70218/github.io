@@ -58,5 +58,5 @@ sleep 10
        fi
 else
     # 憑證不存在當前執行腳本目錄下
- echo "Credentials do not exist in the current execution script directory"
+ echo "SSL Credentials do not exist in the current execution script directory"
 fi
