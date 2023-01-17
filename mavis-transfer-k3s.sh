@@ -24,7 +24,7 @@ curl -sSL https://pentium-repo.s3.ap-northeast-1.amazonaws.com/release.mavis/ver
 
 #4.刪除 Mavis 服務來停止對 database的存取
 kubectl delete deploy -n pentium beat flower apiserver task-runner f2e ssh-proxy rdp-proxy
-sleep 10
+sleep 30
 #5.database 還原
 /usr/local/bin/kubectl  cp /tmp/postgresql.dump postgresql-0:/tmp/ -n pentium
 sleep 15
