@@ -26,12 +26,12 @@ curl -sSL https://pentium-repo.s3.ap-northeast-1.amazonaws.com/release.mavis/ver
 kubectl delete deploy -n pentium beat flower apiserver task-runner f2e ssh-proxy rdp-proxy
 sleep 60
 #5.database 還原
-/usr/local/bin/kubectl  cp /tmp/postgresql.dump postgresql-0:/tmp/ -n pentium
+/usr/local/bin/kubectl cp /tmp/postgresql.dump postgresql-0:/tmp/ -n pentium
 sleep 15
-/usr/local/bin/kubectl  exec -ti postgresql-0 -n pentium -- bash -c "PGPASSWORD=${POSTGRES_PASSWORD} psql -U psql postgres -c 'drop database mavis'"
+/usr/local/bin/kubectl exec -ti postgresql-0 -n pentium -- bash -c "PGPASSWORD=${POSTGRES_PASSWORD} psql -U psql postgres -c 'drop database mavis'"
 sleep 15
 
-/usr/local/bin/kubectl  exec -ti postgresql-0 -n pentium -- bash -c "PGPASSWORD=${POSTGRES_PASSWORD} psql -U psql postgres -c 'create database mavis'"
+/usr/local/bin/kubectl exec -ti postgresql-0 -n pentium -- bash -c "PGPASSWORD=${POSTGRES_PASSWORD} psql -U psql postgres -c 'create database mavis'"
 
 sleep 15
 
